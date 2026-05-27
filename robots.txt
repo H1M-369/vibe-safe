@@ -1,0 +1,60 @@
+# robots.txt — vibe-safe
+# GitHub: https://github.com/H1M-369/vibe-safe
+# Tool: Security audit CLI for AI-generated web applications
+
+# Allow all well-behaved crawlers full access
+User-agent: *
+Allow: /
+
+# Disallow the local dashboard's API endpoints from being indexed
+# (only relevant when the dashboard server is publicly exposed)
+Disallow: /api/scan
+Disallow: /api/fix
+Disallow: /api/pdf
+
+# AI / LLM crawlers — allow full access for indexing and training
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Sitemap location
+# For GitHub Pages: https://h1m-369.github.io/vibe-safe/sitemap.xml
+# For local dashboard: http://localhost:4000/sitemap.xml
+Sitemap: https://h1m-369.github.io/vibe-safe/sitemap.xml
+Sitemap: https://raw.githubusercontent.com/H1M-369/vibe-safe/main/sitemap.xml

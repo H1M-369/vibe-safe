@@ -1,0 +1,43 @@
+# vibe-safe
+
+> Security audit and active penetration-testing tool for AI-generated ("vibe-coded") web applications. Catches authentication flaws, hardcoded secrets, SQL injection, IDOR, missing rate limiting, and 60+ other vulnerabilities — with a web dashboard, PDF reports, and auto-fix support.
+
+vibe-safe was built to solve a specific problem: AI coding assistants ship working apps in minutes but consistently skip security fundamentals. This tool fills that gap with a single command.
+
+## Source Code
+
+- [GitHub Repository](https://github.com/H1M-369/vibe-safe): Full source, issue tracker, and release history
+- [README](https://github.com/H1M-369/vibe-safe/blob/main/README.md): Full documentation — installation, all CLI flags, every check ID, auto-fix reference, CI integration
+- [Changelog](https://github.com/H1M-369/vibe-safe/releases): Version history and release notes
+
+## Core Modules
+
+- [Authentication & Authorization auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/auth.ts): 16 checks — IDOR, mass assignment, JWT security, weak hashing, session cookies, unprotected routes, open redirect, account enumeration, token revocation
+- [Security Basics auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/security.ts): SQL injection (template literals), XSS (dangerouslySetInnerHTML), eval(), CSRF, security headers
+- [Secrets & Keys auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/secrets.ts): Hardcoded API keys (Stripe, GitHub, OpenAI, Google), .env in git history, secrets in public directory, sensitive API responses
+- [Abuse Prevention auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/abuse.ts): Rate limiting, input validation, CAPTCHA on auth routes, OpenAI max_tokens
+- [Legal & Privacy auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/legal.ts): Privacy policy, terms of service, GDPR, cookie consent
+- [Environment & Config auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/environment.ts): DEBUG=true, NODE_ENV, .env.example, console.log leaks
+- [Error Pages auditor](https://github.com/H1M-369/vibe-safe/blob/main/src/auditors/errorPages.ts): Missing 404, 500, 403, 429 handlers, uncaught exception handlers
+
+## Active Probe Modules
+
+- [SQL Injection probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/sqlInjection.ts): Sends payloads to a live app and confirms DB error leakage
+- [XSS probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/xss.ts): Tests for reflected XSS in live responses
+- [Auth Bypass probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/authBypass.ts): Tests JWT alg:none, expired tokens, missing tokens
+- [Rate Limit probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/rateLimit.ts): Floods an endpoint to confirm 429 responses
+- [Security Headers probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/headers.ts): Reads real HTTP response headers
+- [Sensitive Endpoints probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/sensitiveEndpoints.ts): Probes /.env, /.git/config, /admin, /swagger, and 20+ paths
+- [Error Pages probe](https://github.com/H1M-369/vibe-safe/blob/main/src/probes/errorPages.ts): Checks for stack trace leakage in 404/500 responses
+
+## Auto-Fix System
+
+- [Fixer](https://github.com/H1M-369/vibe-safe/blob/main/src/fixer.ts): 12 idempotent auto-fixes — helmet for Express, Next.js security headers, .env gitignore, .env.example, privacy policy, terms of service, 404/500 handlers, rate limit boilerplate, validation boilerplate, debug flag removal, sensitive log removal
+
+## Optional
+
+- [Full type definitions](https://github.com/H1M-369/vibe-safe/blob/main/src/types.ts): All shared TypeScript interfaces — Finding, ProbeResult, ScanContext, ScanResult, FixResult
+- [Pattern library](https://github.com/H1M-369/vibe-safe/blob/main/src/utils/patternMatcher.ts): All regex patterns for SQL injection, XSS, secrets, debug flags, rate limiting, validation
+- [CLI entry point](https://github.com/H1M-369/vibe-safe/blob/main/src/cli.ts): Commander.js setup, authorization gate, all flag wiring
+- [Web dashboard](https://github.com/H1M-369/vibe-safe/blob/main/src/ui.ts): Express server at port 4000 — scan, fix, and PDF download in a browser UI
+- [PDF report generator](https://github.com/H1M-369/vibe-safe/blob/main/src/pdfReport.ts): pdfkit-based report with severity cards, per-finding details, and page footers

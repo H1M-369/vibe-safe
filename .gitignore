@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated reports (created by vibe-safe at runtime)
+vibe-safe-report.md
+vibe-safe-report.pdf
+*.pdf
+vibe-safe-suggestions/
+
+# Auto-fix backups
+*.vibe-safe.bak
+
+# Environment files — never commit these
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test output
+test-output.pdf
+coverage/

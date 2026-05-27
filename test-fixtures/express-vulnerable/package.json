@@ -1,0 +1,14 @@
+{
+  "name": "express-vulnerable",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable Express app for testing vibe-safe",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo built"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "openai": "^4.0.0"
+  }
+}

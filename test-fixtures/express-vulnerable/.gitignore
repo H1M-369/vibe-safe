@@ -1,0 +1,5 @@
+
+# Added by vibe-safe
+.env
+.env.local
+.env.*.local
